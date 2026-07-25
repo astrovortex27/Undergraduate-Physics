@@ -1,0 +1,720 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{xcolor}
+\pagecolor{black}
+\color{white}
+\geometry{margin=1in}
+
+\title{Analytical Mechanics}
+\author{Noah Miller}
+\date{February 9, 2026}
+
+\begin{document}
+
+\maketitle
+\section{ELE in 2 dimensions}
+Suppose there are two points $(x_1, y_1)$ and $(x_2, y_2)$. We wish to find
+a function $y(x)$ such that the integral
+\begin{equation}
+S = \int_{x_1}^{x_2} f\big[y(x), y'(x), x\big]\, dx
+\end{equation}
+is maximum, minimum, or stationary.
+
+Suppose $y(x)$ is the correct path. Let us introduce a nearby (incorrect)
+path $Y(x)$ defined by
+\begin{equation}
+Y(x) = y(x) + \alpha \eta(x),
+\end{equation}
+where $\alpha$ is a real parameter and $\eta(x)$ is an arbitrary function.
+
+To fix the endpoints at $(x_1, y_1)$ and $(x_2, y_2)$, we impose the condition
+\begin{equation}
+\eta(x_1) = \eta(x_2) = 0.
+\end{equation}
+
+The true path corresponds to the extremum at $\alpha = 0$. Rewriting the
+action, we obtain
+\begin{equation}
+S = \int_{x_1}^{x_2} f\big(y + \alpha \eta,\, y' + \alpha \eta',\, x\big)\, dx.
+\end{equation}
+
+For $S$ to be maximum, minimum, or stationary, the condition is
+\begin{equation}
+\frac{dS}{d\alpha}
+= \int_{x_1}^{x_2}
+\left(
+\eta \frac{\partial f}{\partial y}
++ \eta' \frac{\partial f}{\partial y'}
+\right) dx
+= 0.
+\end{equation}
+
+We can take care of the second term in the integrand by integration by parts:
+\begin{equation}
+\int_{x_1}^{x_2}
+\eta' \frac{\partial f}{\partial y'}\, dx
+=
+\left.
+\eta \frac{\partial f}{\partial y'}
+\right|_{x_1}^{x_2}
+-
+\int_{x_1}^{x_2}
+\eta \frac{d}{dx}
+\left(
+\frac{\partial f}{\partial y'}
+\right) dx.
+\end{equation}
+
+The boundary term vanishes due to the condition imposed earlier. Substituting
+this result back, we obtain
+\begin{equation}
+\int_{x_1}^{x_2}
+\eta
+\left[
+\frac{\partial f}{\partial y}
+-
+\frac{d}{dx}
+\left(
+\frac{\partial f}{\partial y'}
+\right)
+\right] dx
+= 0.
+\end{equation}
+
+Since $\eta(x)$ is arbitrary and vanishes only at the endpoints, the integrand
+must vanish identically. Hence,
+\begin{equation}
+\frac{\partial f}{\partial y}
+-
+\frac{d}{dx}
+\left(
+\frac{\partial f}{\partial y'}
+\right)
+= 0.
+\end{equation}
+
+This is the Euler--Lagrange equation.
+
+\section{Parametric form of ELE}
+Suppose x = x(u) and y = y(u). We have to extremize the integral 
+\begin{equation}
+    S = \int_{u_1}^{u_2}f\big[x(u),y(u),x'(u),y'(u),u\big]\ du
+\end{equation}
+The procedure is almost the same as the previous time. Introduce a variation in the path
+\begin{equation}
+    Y(u) = y(u) + \alpha \eta(u) \notag
+\end{equation}
+\begin{equation}
+    X(u) = x(u) + \beta \xi(u) \notag
+\end{equation}
+The true path corresponds to the extremum at $\alpha = 0$ and $\beta = 0$. Rewriting the
+action, we obtain
+\begin{equation}
+S = \int_{u_1}^{u_2} f\big(x + \beta \xi, y + \alpha \eta,\, x' + \beta \xi' , y' + \alpha \eta',\, u\big)\, du.
+\end{equation}
+For $S$ to be maximum, minimum, or stationary, the condition is
+\begin{equation}
+\frac{dS}{d\beta}
+= \int_{u_1}^{u_2}
+\left(
+\xi \frac{\partial f}{\partial x}
++ \xi' \frac{\partial f}{\partial x'}
+\right) du
+= 0
+\end{equation}
+
+\begin{equation}
+\frac{dS}{d\alpha}
+= \int_{u_1}^{u_2}
+\left(
+\eta \frac{\partial f}{\partial y}
++ \eta' \frac{\partial f}{\partial y'}
+\right) du
+= 0
+\end{equation}
+Solving both equations like the previous time, we get
+\begin{equation}
+\frac{\partial f}{\partial y}
+-
+\frac{d}{du}
+\left(
+\frac{\partial f}{\partial y'}
+\right)
+= 0
+\end{equation}
+\begin{equation}
+\frac{\partial f}{\partial x}
+-
+\frac{d}{du}
+\left(
+\frac{\partial f}{\partial x'}
+\right)
+= 0
+\end{equation}
+\section{The Brachistochrone Problem}
+Suppose there are two points. A particle starting from the first point is free to take any path to reach the second point.
+We have to find the path such that it takes the least time to reach the second point under the influence of gravity.
+I will fix the starting point at the origin. Let the second point $(x_1,y_1)$ be in the fourth quadrant. \\
+We have 
+\begin{equation}
+    dt = \frac{ds}{v}
+\end{equation}
+From introductory physics, we know that
+\begin{equation}
+    v = \sqrt{2gy}
+\end{equation}
+Thus, the problem reduces to minimizing the integral
+\begin{equation}
+    t = \int_{0}^{y_1}\sqrt{\frac{1+x'^2}{2gy}}\,dy
+\end{equation}
+We can use the Euler--Lagrange Equation from (8).
+
+\begin{equation}
+\frac{\partial f}{\partial x}
+-
+\frac{d}{dy}\left(\frac{\partial f}{\partial x'}\right)= 0
+\implies
+0-\frac{d}{dy}\left(\frac{x'}{\sqrt{2gy(1+x'^2)}}\right)=0
+\end{equation}
+(I know this looks very unsettling but not like we can do anything about it.)\\
+Thus,
+\begin{align}
+    \frac{x'^2}{y(1+x'^2)}=const.
+\end{align}
+Let the constant term be 2a. Why? Magic. \\
+Rearrange a bit. You should get
+\begin{align}
+    x=\int_{0}^{y_1}\sqrt{\frac{y^2}{2a-y^2}}\,dy
+\end{align}
+Make the substitution $y=a(1-\cos\theta)$. Why? Again Magic. You'll get:-
+\begin{align}
+    y=a(1-\cos\theta)
+\end{align}
+\begin{align}
+    x=a(\theta - \sin\theta)+C
+\end{align}
+This represents a cycloid. I have written the solution in the parametric form because a solution
+in terms of solely x and y is REALLY messy(you can see it yourself).
+
+\section{Fermat's Theorem and Snell's Law}
+Fermat's theorem states that the path taken by a light ray is always such that the time taken
+by it to trace the path is stationary. Mathematically, the integral
+\begin{align}
+    t=\int \frac{ds}{v} \implies \frac{1}{c}\int n \, ds
+\end{align}
+is stationary. \\
+Let's consider a light ray refracting through a glass slab. Let the light emerge from a point
+$P_1(0,h_1,0)$ in a medium with refractive index $n_1$. We refract it through a glass slab
+with a refractive index $n_2$ and reach another point $P_2(x_2-x,-h_2,0)$ within the glass slab.
+Let the point at which the light ray intersected the two mediums be $Q(x,0,z)$.
+\begin{align}
+    ds=\sqrt{dx^2+dy^2+dz^2} \notag
+\end{align}
+The integral in (23) becomes 
+\begin{align}
+    t=\frac{1}{c} \int n \, \sqrt{dx^2+dy^2+dz^2} \implies t = \frac{1}{c}\left[n_1 \sqrt{x^2+h_1^2+z^2}+n_2 \sqrt{(x_2-x)^2+h_2^2+z^2}\right] \notag
+\end{align}
+To make time stationary,
+\begin{align}
+    \frac{\partial t}{\partial z}=\frac{1}{c}\left[\frac{n_1z}{\sqrt{x^2+h_1^2+z^2}}+\frac{n_2z}{\sqrt{(x_2-x)^2+h_2^2+z^2}}\right]=0
+\end{align}
+Which is only possible when z=0. This means that the z-coordinate does not change. We just proved the
+co-planarity law of refraction, i.e, the incident ray, the refracted ray and the normal constructed at the point of incidence, all lie on the same plane.
+\\ Also,
+\begin{align}
+    \frac{\partial t}{\partial x}=\frac{1}{c}\left[\frac{n_1x}{\sqrt{x^2+h_1^2+z^2}}-\frac{n_2(x_2-x)}{\sqrt{(x_2-x)^2+h_2^2+z^2}}\right]=0
+\end{align}
+If $\theta_1$ is the angle made by the incident ray with the normal and $\theta_2$ is the angle made by the refracted ray with the normal, we can say from trigonometry that
+\begin{align}
+  \sin \theta_1 = \frac{x}{\sqrt{x^2+h_1^2+z^2}} \notag
+\end{align}
+\begin{align}
+  \sin \theta_2 = \frac{x_2-x}{\sqrt{(x_2-x)^2+h_2^2+z^2}} \notag
+\end{align}
+Thus, we can rewrite (25) as
+\begin{equation}
+    n_1 \sin \theta_1 = n_2 \sin \theta_2.
+\end{equation}
+And we just proved Snell's Law.
+
+\section{The First Integral}
+I will derive it only once. You better memorize it.
+Suppose the functional does not depend on y. I.e, the functional is f(x,y'). It's easy to show that
+\begin{align}
+    \frac{\partial f}{\partial y'}=const.
+\end{align}
+Let's consider another case, where the functional does not depend on x. I.e, the functional is f(y,y').
+\\ Thus,
+\begin{align}
+    df = \frac{\partial f}{\partial y}dy + \frac{\partial f}{\partial y'}dy'
+\end{align}
+Dividing both sides by dx,
+\begin{align}
+    \frac{df}{dx} = \frac{\partial f}{\partial y}y' + \frac{\partial f}{\partial y'}y''\implies\frac{df}{dx}=\frac{d}{dx}\left(y'\frac{\partial f}{\partial y'}\right)
+\end{align}
+And hence, the first integral becomes
+\begin{equation}
+    f-y'\frac{\partial f}{\partial y'}=const.
+\end{equation}
+
+\section{The Lagrangian Formulation}
+We define the Lagrangian $\mathcal{L}$ as 
+\begin{align}
+    \mathcal{L}=T-U
+\end{align}
+Where T is the kinetic energy and U is the potential energy due to some conservative force.
+Why do we define $\mathcal{L}$ as that? I pulled it out of a hat. \\
+Kidding. To realize it's significance, I will show you something. Just read it before questioning anything.
+For simplicity, let's assume a particle constrained along the x-axis.
+\begin{align}
+    T = \frac{1}{2}m\dot{x}^2 \notag \\\notag\\ U=U(x)\notag
+\end{align}
+\begin{align}
+    \frac{\partial \mathcal{L}}{\partial x}=-\frac{\partial U}{\partial x}=F_x \\ \notag \\ \frac{\mathcal{L}}{\partial\dot{x}}=m\dot{x}=p_x
+\end{align}
+From Newton's second law,
+\begin{align}
+    F_x = \dot{p_x} \implies \frac{\partial \mathcal{L}}{\partial x}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{x}}
+\end{align}
+This is called the Hamilton's principle in cartesian coordinates. We can also extend it to y and z
+
+\begin{align}
+    \frac{\partial \mathcal{L}}{\partial y}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{y}} \\ \notag \\ \frac{\partial \mathcal{L}}{\partial z}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{z}}
+\end{align}
+
+    Hamilton's principle states that a particle takes its path such that the integral,
+    \begin{align}
+        S=\int_{t_1}^{t_2}\mathcal{L}(q_1,q_2,\cdots,q_n,\dot{q_1},\dot{q_2},\cdots,\dot{q_n},t)dt
+    \end{align}
+    called the \textbf{Action}, is stationary. Thus,
+    \begin{align}
+        \frac{\partial \mathcal{L}}{\partial q_i}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{q_i}} 
+    \end{align}
+    where i=1,2,3,....,n. \\
+     we can see that (34),(35) and (36) are just a natural
+    consequence of the Hamilton's principle. Notice that the Hamilton's principle is more fundamental than
+    Newton's second law, and thus we should ideally derive Newton's second law from Hamilton's priniple. A really straighforward process tbh.
+    \\
+    One of the advantages of the Lagrangian formulation is that Lagrange equations take almost the same
+    form each time, unlike Newton's second law(which looks horrible in almost every non-cartesian coordinate system).
+    See the $q_i$ I introduced? It is called the ``Generalized coordinate". Generalized because it can be cartesian, spherical polar, cylindrical polar,
+    anything. And the corresponding Lagrange equation will look like (38). \\
+    You see how in (34) $\frac{\partial \mathcal{L}}{\partial x}$ plays the role of force? And $\frac{\partial \mathcal{L}}{\partial \dot{x}}$ the role of
+    momentum? \\ You will see that $\frac{\partial \mathcal{L}}{\partial q}$ will always play a role \textit{similar} to force, and $\frac{\partial \mathcal{L}}{\partial \dot{q}}$ \textit{similar} to momentum.
+    Hence I shall call them ``Generalized Force'' and ``Generalized Momentum'' respectively.
+    \begin{align}
+        \text{Generalized Force}=\text{rate of change of Generalized Momentum}
+    \end{align}
+    Let's use spherical polars for the generalized coordinates in the Lagrange equation. For the sake of simplicity,
+    I will assume the motion to be 2-dimensional. Thus, we need only two coordinates \textbf{r} and $\phi$.
+    \begin{align}
+        \mathcal{L}=T-U \notag
+    \end{align}
+    Where
+    \begin{align}
+        T = \frac{1}{2}mv^2 = \frac{1}{2}m(\dot{r}^2+r^2\dot{\phi}^2) \notag \\ \notag \\ U = U(r,\phi) \notag
+    \end{align}
+    The corresponding Lagrange equation will be
+    \begin{align}
+        \frac{\partial \mathcal{L}}{\partial r}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{r}} \implies mr\dot{\phi}^2-\frac{\partial U}{\partial r}= m\ddot{r}
+    \end{align}
+    We know that $-\frac{\partial U}{\partial r}$ is the radial component of the force. Thus,
+    \\ \begin{align}
+        F_r=m(\ddot{r}-r\dot{\phi}^2)
+    \end{align} 
+    Writing the Lagrange equation w.r.t $\phi$:-
+    \begin{align}
+        \frac{\partial \mathcal{L}}{\partial \phi}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{\phi}} \implies -\frac{\partial U}{\partial \phi}=mr^2\ddot{\phi}+2mr\dot{r}\dot{\phi}
+    \end{align}
+ We know that $-\frac{1}{r}\frac{\partial U}{\partial \phi}$ is the component of force along $\hat{\phi}$.
+    \begin{align}
+        F_\phi = mr\ddot{\phi}+2m\dot{r}\dot{\phi}
+    \end{align}
+    Thus,
+    \begin{align}
+        \vec{F}=F_r\hat{r}+F_\phi \hat{\phi}
+    \end{align}
+    Notice that $\frac{\partial \mathcal{L}}{\partial r}$ plays exactly the role of force. \\ \\ $\frac{\partial \mathcal{L}}{\partial \phi}$ plays a role \textit{similar} to force.
+    If you pay attention, you will see that it's nothing but the \textbf{Torque}. and $\frac{\partial \mathcal{L}}{\partial \dot{\phi}}$ is, as you might have recognized, the \textbf{Angular Momentum}.
+    \section{Lagrange Equations with constraints}
+    I derived Lagrange equation for a system with no constraints in the previous sections. Now, I will derive it for a constrained particle.
+    Suppose the particle is constrained to move along a surface(rectangular, spherical, or cylindrical). It has 2 degrees of freedom.
+    And as I'm assuming the system to be holonomic, the system needs two generalized coordinates. Let them be $q_1$ and $q_2$.
+    There are two types of forces acting on it-- \textbf{F}, the force due to a conservative force, and \textbf{$F_{cstr}$}.
+    
+    The constraining forces are normal to the surface, as their only job is to prevent the particle from leaving the surface.
+    the total force is
+    \begin{equation}
+        F_{tot}=F + F_{cstr} \notag
+    \end{equation}
+    Let the particle travel from a position $r_1$ to $r_2$. Let the path taken by it be r(t). \\
+    \begin{align}
+        T = \frac{1}{2}m\dot{r}^2 \notag \\ \notag \\ U = U(r,t) \notag \\ \notag \\ \mathcal{L}=T-U
+    \end{align}
+    The action integral will be
+    \begin{equation}
+        S_0 = \int_{t_1}^{t_2}\mathcal{L}(r,\dot{r},t)dt
+    \end{equation}
+    Let's introduce a \textbf{wrong} path R(t) such that
+    \begin{equation}
+        R(t)=r(t) + \epsilon(t)
+    \end{equation}
+    The action integral for this wrong path will be 
+    \begin{equation}
+        S = \int_{t_1}^{t_2}\mathcal{L}(R,\dot{R},t)dt
+    \end{equation}
+    Let's define 
+    \begin{equation}
+        \delta S = S - S_0 = \int_{t_1}^{t_2}\delta \mathcal{L}\hspace{0.1cm}dt
+    \end{equation}
+    Where 
+    \begin{align}
+        \delta \mathcal{L}=\mathcal{L}(R,\dot{R},t)-\mathcal{L}(r,\dot{r},t)=\frac{1}{2}m[(\dot{r}+\dot{\epsilon})^{2}-\dot{r}^{2}]+[U(r,t)-U(r+\epsilon,t)]\notag \\ \notag \\ \implies \delta \mathcal{L}=m \dot{r}\cdot \dot{\epsilon}-\epsilon \nabla{U}
+    \end{align}
+    Putting this back in (49)--
+    \begin{equation}
+        \delta S = \int_{t_1}^{t_2}(m \dot{r}\cdot \dot{\epsilon}-\epsilon \nabla{U})dt
+    \end{equation}
+    Integrating the first term by parts:-
+    \begin{equation}
+        \delta S = -\int_{t_1}^{t_2}\epsilon \cdot (m \ddot{r}+\nabla{U})dt
+    \end{equation}
+    Notice that $m\ddot{r}$ is just $F + F_{cstr}$, and $-\nabla U = F$. Putting this in (52):-
+    \begin{equation}
+        \delta S = -\int_{t_1}^{t_2}\epsilon \cdot F_{cstr}\hspace{0.1cm} dt
+    \end{equation} 
+    As I said before, $F_{cstr}$ is perpendicular to the surface. Thus, the dot product in (53) is zero.
+    Thus, $\delta S = 0$. This implies that the action is stationary. As the constraints are holonomic, I can thus confirm that
+    \begin{align}
+        \frac{\partial \mathcal{L}}{\partial q_1}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{q_1}} \\ \notag \\ \frac{\partial \mathcal{L}}{\partial q_2}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{q_2}}
+    \end{align}
+
+    \section{Conservation of Momentum}
+    Consider an N-particle system free from the influence of external forces. The system is \textbf{translationally invariant}.
+    What I mean is, a small displacement $\epsilon$ in each particle won't really affect the physics of the system.
+    \\ Thus, we can say that 
+    \begin{equation}
+        U(r_i)=U(r_i+\epsilon)\hspace{2cm}[\text{i=1,2,...,N}]
+    \end{equation}
+    For simplicity, let's displace each particle by a small distance $\epsilon$ in the x-axis.
+    Let the difference between the new Lagrangian and the old Lagrangian be $\delta \mathcal{L}$.
+    \begin{equation}
+        \delta \mathcal{L} = \epsilon\sum_{i=1}^{N}\frac{\partial\mathcal{L}}{\partial x_i}=0
+    \end{equation}
+    $\delta \mathcal{L}=0$ as the system is translationally invariant, and the changes I made are purely translational.
+    \\ From the Lagrange equation:-
+    \begin{equation}
+        \frac{\partial \mathcal{L}}{\partial x_i}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{x_i}}
+    \end{equation}
+    Thus, (57) becomes
+    \begin{equation}
+        \frac{d}{dt}\sum_{i=1}^{N}\frac{\partial\mathcal{L}}{\partial\dot{x_i}}=0 \implies \dot{P_x}=0
+    \end{equation}
+    Where $P_x$ is the total momentum along the x-xis. By repeating the same process, we can also prove that $P_y$ and $P_z$ also remain constant with time.
+    
+    \section{Conservation of Energy}
+    Let's differentiate the Lagrangian operator w.r.t time.
+    \begin{equation}
+        \frac{d\mathcal{L}}{dt}=\sum_{i=1}^{N}\left(\frac{\partial \mathcal{L}}{\partial q_i}\dot{q_i}+\frac{\partial \mathcal{L}}{\partial \dot{q_i}}\ddot{q_i}+\frac{\partial \mathcal{L}}{\partial t}\right)
+    \end{equation}
+    Let's consider the case where $\mathcal{L}$ does not depend on time explicitly. So the last term vanishes.
+    From the Lagrange equation, we can write 
+    \begin{align}
+        \frac{\partial \mathcal{L}}{\partial q_i} = \frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{q_i}}=\dot{p_i}
+    \end{align}
+    where $p_i$ is the generalized momentum. So (60) becomes
+    \begin{equation}
+        \frac{d\mathcal{L}}{dt}=\sum_{i=1}^{N}\left(\dot{p_i}\dot{q_i}+p_i\ddot{q_i}\right)=\frac{d}{dt}\sum_{i=1}^{N}p_i\dot{q_i}
+    \end{equation}
+    Taking everything to the right hand side, we can say that
+    \begin{equation}
+        \sum_{i=1}^{N}p_i\dot{q_i}-\mathcal{L}=\mathcal{H}
+    \end{equation}
+    Where $\mathcal{H}$ is called the \textbf{Hamiltonian}. If the Lagrangian does not depend on time, then the Hamiltonian remains conserved.
+    Now the business is to find the Hamiltonian. \\
+    I'm assuming that the position depends on the generalized coordinates only, and not time. i.e, the relation between 
+    position and generalized coordinates does not involve time.
+    \begin{align}
+        r_{\alpha}=r(q_1,q_2,\cdots,q_N) \notag \\ \dot{r_{\alpha}}=\sum_{i=1}^{N}\frac{\partial r_i}{\partial q_i}\dot{q_i}
+    \end{align}
+    Let's find the kinetic energy.
+    \begin{equation}
+        T = \sum_{\alpha=1}^{N}\frac{1}{2}m_{\alpha}\dot{r_{\alpha}}^{2}
+    \end{equation}
+    Now we need to find $\dot{r_{\alpha}}^{2}$. Consider this
+    \begin{align}
+        \dot{r_{\alpha}}^{2}=\sum_{j}\frac{\partial r_{\alpha}}{\partial q_j}\dot{q_j}\sum_{k}\frac{\partial r_{\alpha}}{\partial q_k}\dot{q_k}
+    \end{align}
+    Now, we can rewrite (65) as:-
+    \begin{equation}
+        T = \frac{1}{2}\sum_{\alpha=1}^{N}\left(m_{\alpha}\sum_{j}\frac{\partial r_{\alpha}}{\partial q_j}\dot{q_j}\sum_{k}\frac{\partial r_{\alpha}}{\partial q_k}\dot{q_k}\right)=\frac{1}{2}\sum_{\alpha=1}^{N}A_{jk}\dot{q_j}\dot{q_k}
+    \end{equation}
+    Where 
+    \begin{equation}
+        A_{jk}=\sum_{\alpha}m_{\alpha}\left(\frac{\partial r_{\alpha}}{\partial q_j}\right)\cdot\left(\frac{\partial r_{\alpha}}{\partial q_k}\right)
+    \end{equation}
+    We can find the generalized momentum by differentiating (67) w.r.t $\dot{q_i}$.
+    \begin{equation}
+        p_i = \frac{\partial \mathcal{L}}{\partial \dot{q_i}}=\frac{\partial T}{\partial \dot{q_i}}=\sum_{j}A_{ij}\dot{q_j}
+    \end{equation}
+    Now put an end to this seemingly endless suffering.. put this back in (63).
+    \begin{equation}
+        \sum_{i=1}^{N}\left(\sum_{j}A_{ij}\dot{q_j}\dot{q_i}\right)-\mathcal{L}=\mathcal{H}
+    \end{equation}
+    Notice how the first term of (70) bears similarity to (67). Yep, you got it. The first term of (70) is nothing but 2T. Thus,
+    \begin{equation}
+        \mathcal{H}=2T-(T-U)=T+U
+    \end{equation}
+    Thus, we can conclude 2 things. First, for natural coordinates(generalized coordinates whose relation to the position of the particle is independent of time), the Hamiltonian is just the total energy.
+    Second, for a system whose Lagrangian does not explicitly depends on time, the Hamiltonian remains conserved.
+    \\ Thus, we can say that, for a system with natural coordinates, whose Lagrangian does not depend on time explicitly, \textbf{The Total Energy remains conserved}.
+
+    \section{Noether's theorem}
+    Consider a one-parameter mapping from $q_i(t)\rightarrow Q_i(s,t)$ such that $Q(0,t)=q_i(t)$. This transformation 
+    is said to be a continuous symmetry of the Lagrangian if--
+    \begin{equation}
+        \frac{\partial}{\partial S}\left(L[Q(s,t),\dot{Q}(s,t),t]\right)=0
+    \end{equation}
+    Noether's theorem states that for each such symmetry a conserved quantity exists. 
+
+
+    \section{Lagrange Multipliers}
+    The method of Lagrange multipliers help us to find the constraining forces. To demonstrate this,
+    consider a case where the coordinates are related to each other by some constraint 
+    \begin{equation}
+        f(x,y)=constant \notag
+    \end{equation}
+    By following the theory developed in section 6, we know that the particle will take such a path that the action is stationary.
+    \begin{equation}
+        S_0=\int_{t_1}^{t_2}\mathcal{L}(x,\dot{x},y,\dot{y})\hspace{0.1cm}dt
+    \end{equation}
+    I'm considering the cases where the Lagrangian is time-independent. However, the method can be applied to time-dependent Lagrangians too.
+    Let's introduce a variation in the paths:-
+    \begin{align}
+        X = x + \delta x(t) \\ \notag \\ Y = y + \delta y(t)
+    \end{align}
+    Thus, we have 
+    \begin{equation}
+        S_1=\int_{t_1}^{t_2}\mathcal{L}(X,\dot{X},Y,\dot{Y})\hspace{0.1cm}dt
+    \end{equation}
+    For a stationary path, the difference between the two actions is zero.
+    \begin{equation}
+        \delta S = \int_{t_1}^{t_2}\delta L \hspace{0.1cm}dt = 0
+    \end{equation}
+    This implies that
+    \begin{equation}
+        \int_{t_1}^{t_2}\left(\frac{\partial \mathcal{L}}{\partial x}\delta x +\frac{\partial \mathcal{L}}{\partial y}\delta y + \frac{\partial \mathcal{L}}{\partial \dot{x}}\delta \dot{x} + \frac{\partial \mathcal{L}}{\partial \dot{y}}\delta \dot{y}\right)dt=0
+    \end{equation}
+    The third and fourth term can be taken care of by integrating by parts:-
+    \begin{equation}
+        \int_{t_1}^{t_2}\left[\left(\frac{\partial \mathcal{L}}{\partial x}-\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{x}}\right) + \left(\frac{\partial \mathcal{L}}{\partial y}-\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{y}}\right)\right]dt=0
+    \end{equation}
+    As x and y are inter-related because of constraints, we can't just make the bracket terms zero. However, we can do another thing.
+    As the points concerned follow the constraint f(x,y)=constant,
+    \begin{equation}
+        \lambda(t)\left[\frac{\partial f}{\partial x}\delta x + \frac{\partial f}{\partial y}\delta y\right]=0
+    \end{equation}
+    where $\lambda(t)$ is an arbitrary function, and also our \textbf{Lagrange multiplier}.
+    Addint (78) and (79):-
+    \begin{equation}
+        \int_{t_1}^{t_2}\left[\left(\frac{\partial \mathcal{L}}{\partial x}-\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{x}}+\lambda(t)\frac{\partial f}{\partial x}\right) + \left(\frac{\partial \mathcal{L}}{\partial y}-\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{y}}+\lambda(t)\frac{\partial f}{\partial y}\right)\right]dt=0
+    \end{equation}
+    As $\lambda(t)$ is an arbitrary function, we can set it in such a way so that the bracket terms disappear. Thus,
+    \begin{align}
+        \frac{\partial \mathcal{L}}{\partial x}+\lambda\frac{\partial f}{\partial x}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{x}}
+    \end{align}
+    \begin{align}
+        \frac{\partial \mathcal{L}}{\partial y}+\lambda\frac{\partial f}{\partial y}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{y}}
+    \end{align}
+    I claimed that $\lambda$ will help us find the constraining forces. How? To demonstrate this, I will consider a simple one-particle system. It's Lagrangian is:-
+    \begin{equation}
+        \mathcal{L}=\frac{1}{2}m(\dot{x}^2+\dot{y}^2)-U(x,y)
+    \end{equation}
+    Putting this in (81) and (82):-
+    \begin{align}
+        -\frac{\partial U}{\partial x}+\lambda\frac{\partial f}{\partial x}=m\ddot{x}\implies F_x + \lambda\frac{\partial f}{\partial x} = F_x + F_x^{cstr}\notag \\ \notag \\ \therefore \lambda\frac{\partial f}{\partial x}=F_x^{cstr}
+    \end{align}
+    \begin{align}
+        -\frac{\partial U}{\partial y}+\lambda\frac{\partial f}{\partial y}=m\ddot{y}\implies F_x + \lambda\frac{\partial f}{\partial y} = F_y + F_y^{cstr}\notag \\ \notag \\ \therefore \lambda\frac{\partial f}{\partial y}=F_y^{cstr}
+    \end{align}
+    \begin{equation}
+        \therefore \mathbf{F^{cstr}}=\lambda\frac{\partial f}{\partial x}\hat{x}+\lambda\frac{\partial f}{\partial y}\hat{y}
+    \end{equation}
+
+    \section{How to account for non-constraint non-conservative forces in the Lagrangian Formulation?}
+    To demonstrate this, I will consider a particle moving in one dimension. I will define the Lagrangian like I always have,
+    \begin{equation}
+        \mathcal{L}=T-U
+    \end{equation}
+    I will denote the non-conservative force by $\mathbf{F^{nc}}$ and the total force by $\mathbf{F}$.
+    \begin{equation}
+        \mathbf{F}=-\frac{\partial U}{\partial x}+\mathbf{F^{nc}}\implies m\ddot{x}=-\frac{\partial U}{\partial x}+\mathbf{F^{nc}}
+    \end{equation}
+    Now,
+    \begin{align}
+        -\frac{\partial U}{\partial x}=\frac{\partial \mathcal{L}}{\partial x}\\ \notag \\ m\ddot{x}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{x}}
+    \end{align}
+    Thus, the modified Lagrange equation will be:-
+    \begin{equation}
+        \frac{\partial \mathcal{L}}{\partial x}+\mathbf{F^{nc}}=\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{x}}
+    \end{equation}
+
+    \section{The Hamiltonian Formulation}
+    In the Lagrangian formulation of mechanics, we defined generalized coordinates. Then we defined a function(the Lagrangian) that depends
+    on the generalized coordinates and their time-derivatives(and sometimes, even time too).
+    The set of generalized coordinates define a \textbf{configuration} in a \textbf{configuration-space}. 
+    The set of generalized velocities along with the set of generalized coordinates define a \textbf{state} in a \textbf{state-space}.
+    Lagrange's equations define a unique state-space orbit for each point on the state-space.
+    \\
+    In the Hamiltonian formulation, we shall take a similar approach. Here, instead of dealing with generalized coordinates and velocities, we shall deal with
+    generalized coordinates and momenta. The set of generalized coordinates along with the canonical momenta defines a \textbf{phase} in a \textbf{phase-space}.
+    \\
+    Consider a particle moving in 1-dimension. We can write it's Lagrangian as
+    \begin{equation}
+        \mathcal{L}=\mathcal{L}(q,\dot{q},t)
+    \end{equation}
+    Differentiating it w.r.t time,
+    \begin{equation}
+        \frac{d\mathcal{L}}{dt}=\frac{\partial \mathcal{L}}{\partial q}\dot{q}+\frac{\partial \mathcal{L}}{\partial \dot{q}}\ddot{q}+\frac{\partial \mathcal{L}}{\partial t}
+    \end{equation}
+    Let's consider the cases where the Lagrangian doesn't depend explicitly on time. I will show you in a bit why.
+    We define the generalized momentum as
+    \begin{equation}
+        p = \frac{\partial \mathcal{L}}{\partial \dot{q}}=\frac{\partial T}{\partial \dot{q}}
+    \end{equation} 
+    The generalized momentum, in context of the Hamiltonian formulation, is often called the canonical momentum. I will stick to that name cuz it sounds cooler.
+    \\ From Lagrange's equations, we can say that
+    \begin{equation}
+        \frac{\partial \mathcal{L}}{\partial q}=\dot{p}
+    \end{equation}
+    Putting these two values in (93) and bringing our assumptions to effect, we get
+    \begin{equation}
+        \frac{d\mathcal{L}}{dt} = \dot{p}\dot{q}+p\ddot{q}=\frac{d}{dt}\left(p\dot{q}\right)
+    \end{equation}
+    Rearranging, we get 
+    \begin{equation}
+        p\dot{q}-\mathcal{L}=\mathcal{H}
+    \end{equation}
+    Where $\mathcal{H}$ is called the Hamiltonian. This type of transformation is called a \textbf{Legendre Transform}.
+    The Hamiltonian is obtained after applying the Legendre Transform on the Lagrangian. Don't ask me why I chose the Hamiltonian like that. Even I don't know.
+    \\ I will assume the generalized coordinates to be natural. In that case,
+    \begin{equation}
+        \mathbf{r}=r(q) \implies \dot{\mathbf{r}}=\frac{\partial r}{\partial q}\dot{q}
+    \end{equation}
+    Thus,
+    \begin{equation}
+        T = \frac{1}{2}m\mathbf{\dot{r}}^2 = \frac{1}{2}A(q)\dot{q}^2
+    \end{equation}
+    Where
+    \begin{equation}
+        A(q) = m\left(\frac{\partial r}{\partial q}\right)^2
+    \end{equation}
+    Now, 
+    \begin{equation}
+        p=\frac{\partial T}{\partial \dot{q}}=A(q)\dot{q}
+    \end{equation}
+    Putting this back in (97),
+    \begin{equation}
+        \mathcal{H}=A(q)\dot{q}^2-\mathcal{L}=2T-(T-U)=T+U
+    \end{equation}
+    If you're not a degenerate, you must've realized that I essentially repeated the same process I performed in section 9. This time, I just did it for a single particle.
+    Why did I repeat this? Reason 1, I'm a retard. Reason 2, I just wanted to show you that $\mathcal{H}$ is a function of p and q.
+    \\ Looking at (92), you might argue that it's a function of p and $\dot{q}$. And you're not wrong. But the thing is, $\dot{q}$ is itself a function of p and q. Equation (101) makes it clearly obvious. 
+    \begin{equation}
+        \mathcal{H}=\mathcal{H}(q,p)
+    \end{equation}
+    \\ Now do two things. Differentiate $\mathcal{H}$ w.r.t p once. Then q. Partially, of course.
+    \begin{equation}
+        \frac{\partial\mathcal{H}}{\partial p}=\frac{\partial}{\partial{p}}\left[p.\dot{q}(q,p)-\mathcal{L}(q,\dot{q}(p,q))\right] \notag
+    \end{equation}
+    \begin{equation}
+        \implies \frac{\partial \mathcal{H}}{\partial p}=\dot{q}+p\frac{\partial \dot{q}}{\partial p}-\frac{\partial \mathcal{L}}{\partial \dot{q}}\frac{\partial \dot{q}}{\partial p}=\dot{q}
+    \end{equation}
+    Similarly,
+    \begin{equation}
+        \frac{\partial\mathcal{H}}{\partial q}=\frac{\partial}{\partial{q}}\left[p.\dot{q}(q,p)-\mathcal{L}(q,\dot{q}(p,q))\right]\notag
+    \end{equation}
+    \begin{equation}
+        \implies \frac{\partial \mathcal{H}}{\partial q}=p\frac{\partial \dot{q}}{\partial q}-\frac{\partial \mathcal{L}}{\partial \dot{q}}\frac{\partial \dot{q}}{\partial q}-\frac{\partial \mathcal{L}}{\partial q}=-\dot{p}
+    \end{equation}
+    Equations (104) and (105) are called \textbf{Hamilton's equations} in one-dimension. \\
+    Just how Lagrange's equation specify a unique state-space orbit for each point on the state-space, Hamilton's equations specify a unique phase-space orbit for each point on the phase-space.
+    For more than one dimensions, Hamilton's Equations will look like
+    \begin{equation}
+        \frac{\partial \mathcal{H}}{\partial p_i}=\dot{q_i}
+    \end{equation}
+    \begin{equation}
+        -\frac{\partial \mathcal{H}}{\partial q_i}=\dot{p_i}
+    \end{equation}
+    The proof is almost entirely similar to how I derived Hamilton's equations for 1 dimension, save for the fact that it contains a lot of subscripts and sigmas.
+
+    \section{Ignorable coordinates}
+    Suppose the Hamiltonian has 4 parameters: $q_1,q_2,p_1$ and $p_2$.
+    \begin{equation}
+        \mathcal{H}=\mathcal{H}(q_1,q_2,p_1,p_2)
+    \end{equation}
+    And one of the generalized coordinates(say, $q_2$) is ignorable. From (107), we can say that $p_2$ will be constant, and it will entirely depend on the initial phase. Let's call $p_2$ as k.
+    Thus,
+    \begin{equation}
+        \mathcal{H}=\mathcal{H}(q_1,p_1,k)=\mathcal{H}(q_1,p_1)
+    \end{equation}
+    This is one of the advantages of the Hamiltonian formulation. It takes care of the Ignorable coordinates cleanly. The more the number of ignorable coordinates, the lesser equations we will have at hand to deal with.
+    \\ If we have n generalized coordinates their time derivatives, Lagrange's equations will give us n second order differential equations to solve in order to figure out the system's state-space orbit.
+    If we have n generalized coordinates and their canonical momenta, Hamilton's equations will give us 2n first order differential equations to solve in order to find out the system's phase-space orbit.
+    Folloqing (106) and (107), we can say that
+    \begin{equation}
+        \mathbf{\dot{q}}=\mathbf{f}(\mathbf{q},\mathbf{p})
+    \end{equation}
+    \begin{equation}
+        \mathbf{\dot{p}}=\mathbf{g}(\mathbf{q},\mathbf{p})
+    \end{equation}
+    Where
+    \begin{equation}
+        \mathbf{\mathbf{\mathbf{\alpha}}}=(\alpha_1,\alpha_2,\cdots,\alpha_n)
+    \end{equation}
+    I will define \textbf{z} such that
+    \begin{equation}
+        \mathbf{z}=(\mathbf{q},\mathbf{p}) \implies \mathbf{\dot{z}}=(\mathbf{\dot{q}},\mathbf{\dot{p}})
+    \end{equation}
+    Here, \textbf{z} is a 2n dimensional vector called the \textbf{phase-space vector}.
+    \\ \textbf{f} and \textbf{g} are n dimensional vectors comprised of $\frac{\partial \mathcal{H}}{\partial p_i}$ and $-\frac{\partial \mathcal{H}}{\partial q_i}$ respectively.
+    \\ Following (110) and (111), one could say that
+    \begin{equation}
+        \mathbf{\dot{z}}=\mathbf{h}(\mathbf{z})
+    \end{equation}
+    \section{Liouville's Theorem}
+    Suppose I enclose a surface in the phase-space. There will be a lot of dots inside the enclosed surface(each dot representing a phase). The trajectory of each dot across the phase-space will
+    be governed by it's set of Hamilton's equations. Liouville's theorem states that the volume occupied by the dots inside the phase-space will not change with the trajectory.
+    \\
+    To prove this claim, I will focus on a closed surface in the phase-space and denote it by S. One could think of the dots moving around the phase-space as fluid particles moving around in the container, to help them visualize.\\
+    The dots(fluid particles, if we go by that analogy) are moving with speed $\dot{z}$. Let's take two snapshots. One at time t, and one at time $t+\delta t$.
+    If I denote the change in volume by dV,
+    \begin{equation}
+        dV = \int_{S}\dot{z}\cdot\mathbf{n}\hspace{0.05cm}\delta t\hspace{0.1cm}dA
+    \end{equation}
+    Here, \textbf{n} is the unit-vector perpendicular to the surface S. In (115), I took a differential cylinder all over the surface S. The volume of each cylinder(dV) is the base area(dA) times the height of the cylinder perpendicular to the surface($\dot{z}\cdot\mathbf{n}\hspace{0.05cm}\delta t$).
+    
+    \\ Using Gauss' theorem, we can transform (115) into:-
+    \begin{equation}
+        dV = \int_{S}\dot{z}\cdot\mathbf{n}\hspace{0.05cm}\delta t\hspace{0.1cm}dA=\int_{V}\nabla\cdot\dot{z}\hspace{0.05cm}\delta t\hspace{0.1cm}dV
+    \end{equation}
+    Dividing both sides by $\delta t$ and taking the limit as $\delta t \rightarrow 0$:-
+    \begin{equation}
+        \frac{dV}{dt}=\int_{V}\nabla\cdot\dot{z}\hspace{0.05cm}\hspace{0.1cm}dV
+    \end{equation}
+    Now,
+    \begin{equation}
+        \nabla \cdot\dot{z}=\nabla\cdot(\dot{q},\dot{p})=\frac{\partial\dot{q}}{\partial{q}}+\frac{\partial\dot{p}}{\partial{p}}\notag
+    \end{equation}
+    \begin{equation}
+        \implies \nabla \cdot\dot{z}=\frac{\partial}{\partial{q}}\left(\frac{\partial \mathcal{H}}{\partial{p}}\right)-\frac{\partial}{\partial{p}}\left(\frac{\partial \mathcal{H}}{\partial{q}}\right)=0
+    \end{equation}
+    And thus,
+    \begin{equation}
+        \frac{dV}{dt}=0
+    \end{equation}
+    And we just proved Liouville's theorem.
+    \end{document}
+
