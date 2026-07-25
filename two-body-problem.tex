@@ -1,0 +1,189 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\pagecolor{black}
+\color{white}
+\begin{document}
+\title{The Two Body Problem}
+\author{Noah Miller}
+\maketitle
+\section{Introduction}
+In this article, I will discuss the \textit{Two Body Problem} and reproduce the familiar results. My primary interest in this article will be Keplerian orbits. \\
+Consider a system consisting of two isolated particles. I shall assume that the particles' dimensions are negligible compared to their surroundings. 
+I shall also assume that no external forces act on the system. Thus, the only forces which are of concern are their mutual attractive(or repulsive) forces. 
+Assuming these forces to be conservative, I can associate a potential energy $U(\mathbf{r_1},\mathbf{r_2})$ with the system. 
+Here, $\mathbf{r_1}$ and $\mathbf{r_2}$ are the position vectors of the two particles.
+
+\section{Setting up the Lagrangian}
+As the system is translationally and rotationally invariant, we can say that the potential energy is a function of the relative separation between the particles, and does not depend on their 
+absolute positions.
+\begin{equation}
+    U(\mathbf{r_1},\mathbf{r_2}) = U(|\mathbf{r_1}-\mathbf{r_2}|)=U(r) \notag
+\end{equation}
+Where 
+\begin{equation}
+    \mathbf{r}=\mathbf{r_1}-\mathbf{r_2} \notag
+\end{equation}
+is the relative position of particle 1 with respect to particle 2. \\
+The two body problem essentially asks us to find the equations of motion of the system. \\
+Setting up the Lagrangian with respect to an inertial frame,
+\begin{equation}
+    L = \frac{1}{2}m_1\dot{\mathbf{r_1}}^2+\frac{1}{2}m_2\dot{\mathbf{r_2}}^2-U(r)
+\end{equation}
+Now, we need to make an appropriate choice of generalized coordinates. One of them is going to be $\mathbf{r}$, for the sole reason that
+it simplifies the expression for $U$. The other will be the \textit{centre of mass} of the system, for reasons which will be obvious in a few minutes.
+\begin{equation}
+    \mathbf{R}=\frac{m_1\mathbf{r_1}+m_2\mathbf{r_2}}{m_1+m_2}
+\end{equation}
+From now on, I will use $M$ for the total mass of the system.\\
+Now, we have to write the Lagrangian in terms of the generalized coordinates. After a bit of algebra, one can see that 
+\begin{align}
+    \mathbf{r_1}=\mathbf{R}+\frac{m_2}{M}\mathbf{r}\hspace{2.25cm}\notag\\
+    \mathbf{r_2}=\mathbf{R}-\frac{m_1}{M}\mathbf{r}\hspace{2.25cm}\notag\\
+    \therefore L = \frac{1}{2}M\mathbf{\dot{R}}^2 + \left[\frac{1}{2}\mu\dot{\mathbf{r}}^2-U(r)\right]
+\end{align}
+Where 
+\begin{equation}
+    \mu = \frac{m_1m_2}{M}
+\end{equation}
+is the \textit{reduced mass} of the two-particle system. \\
+Notice that the Lagrangian is independent of $\mathbf{R}$, making it ignorable. This implies that
+\begin{equation}
+    M\ddot{\mathbf{R}}=0
+\end{equation}
+Which essentially implies that $\mathbf{\dot{R}}$ remains constant.
+The additivity of Lagrangians allows us to think of the Lagrangian in (3) as \textit{Lagrangian of a free particle of mass M}, plus the \textit{Lagrangian of a particle of mass $\mu$} under the influence of a force $-d U/d r$.
+Physically, this means that our two-particle system is equivalent to a system of a free particle of mass M moving with velocity $\mathbf{\dot{R}}$ and a particle of mass $\mu$ under the force $-d U/d r$. This essentially helps us break the 
+problem into two parts by writing (3) as  
+\begin{equation}
+    L = L_{cm}+L_{rel} 
+\end{equation}
+We've already written and solved the Lagrange equation with respect to $\mathbf{R}$ in (5). Writing the Lagrange equation with respect to $\mathbf{r}$,
+\begin{equation}
+    \mu\ddot{r}=-\frac{dU}{dr}
+\end{equation}
+\section{Angular momentum considerations}
+Now, I want to exploit one more thing about this motion. As the forces are central, the angular momentum of the system is always conserved. 
+\begin{align}
+    \mathbf{l} = \mathbf{r_1}\times\mathbf{p_1}+\mathbf{r_2}\times\mathbf{p_2}=M\mathbf{R}\times\mathbf{\dot{R}}+\mu \mathbf{r}\times\mathbf{\dot{r}}
+\end{align}
+Now, I want you to notice something. From (5), it follows that $\mathbf{\dot{R}}$ is constant. This means that a reference frame whose origin is attached to $\mathbf{R}$ is an inertial one. I wrote down the Lagrangian in (1) with respect to an inertial frame. From the principle of relativity, 
+it follows that two inertial frames are entirely equivalent in all respects. In layman terms, physics does not change-- whether you're in London or Berlin. 
+Thus, if I write the Lagrangian in (1) with respect to a frame whose origin is $\mathbf{R}$, it should not affect the equations of motion in the least bit(maybe a few constants might appear out of nowhere, or disappear). \\
+For a frame attached to $\mathbf{R}$,
+
+\[
+\mathbf{R}=\mathbf{\dot{R}}=0
+\]
+This has immediate consequences. First, the $L_{cm}$ term dies in (6), thus making our problem effectively a \textit{one-body problem}. Second, the $M\mathbf{R}\times\dot{\mathbf{R}}$ term dies in (8). This is obvious, and follows directly from the first consequence. 
+\\
+\section{Picking a coordinate system}
+Now, I will choose a coordinate system. Sure, I have chosen my generalized coordinates. But I still haven't chosen how I am going to represent my generalized coordinates. Polar coordinates will make a nice choice, because I'm dealing with the separation between the two particles, which I can denote by $r$. If I use cartesian coordinates, it will be $\sqrt{x^2+y^2}$-- which looks rather horrible. 
+\begin{equation}
+    L = \frac{1}{2}\mu(\dot{r}^2+r^2\dot{\phi}^2)-U(r)
+\end{equation}
+Writing the Lagrange equation with respect to $\phi$,
+\begin{equation}
+    \mu r^2 \dot{\phi}=l
+\end{equation}
+which is just the statement of conservation of angular momentum. \\
+Writing the Lagrange equation with respect to $r$,
+\begin{equation}
+    \mu \ddot{r}=\mu r \dot{\phi}^2-\frac{dU}{dr}=\frac{l^2}{\mu r^3}-\frac{dU}{dr} = F_{cf}+F
+\end{equation}
+Here, $F$ is a real force($-dU/dr$), while $F_{cf}$ is a fictitious \textit{centrifugal force}. 
+\begin{equation}
+    \mu \ddot{r}=-\frac{d}{dr}\left(\frac{l^2}{2\mu r^2}\right)-\frac{dU}{dr} = -\frac{d}{dr}\left(\frac{l^2}{2\mu r^2}+U\right)=-\frac{dU_{eff}}{dr}
+\end{equation}
+Where 
+\[U_{eff}=\frac{l^2}{2\mu r^2}+U\]
+is the effective potential energy of the system. \\ 
+\section{Conservation of energy} 
+Now, I will do something subtle. Multiply both sides of (12) by $\dot{r}$. Rearranging a bit,
+\begin{align}
+              &\mu \dot{r}\ddot{r} =-\dot{r}\frac{dU_{eff}}{dr} \notag \\
+    \implies &\frac{d}{dt}\left(\frac{1}{2}\mu\dot{r}^2\right)=-\frac{dU_{eff}}{dt} \notag\\
+    \implies &\frac{d}{dt}\left(\frac{1}{2}\mu\dot{r}^2+U_{eff} \right)=0\notag\\
+    \implies &\therefore \frac{1}{2}\mu\dot{r}^2+U_{eff}=E(const.)
+\end{align}
+Which is just the statement of conservation of energy.\\
+\section{Keplerian orbits}
+So far, we have kept things general. To get deeper, we need to get into the specifics of $U$. The most common examples of 
+central forces are the gravitational force and the electrostatic force, for which 
+\begin{align}
+    U = -\frac{\gamma}{r}
+\end{align}
+Where $\gamma$ is the \textit{force parameter}. It is equal to $Gm_1m_2$ in the case of gravitation, and $q_1q_2/4\pi\epsilon_0$ in the case of electrostatic forces.
+\begin{equation}
+    -\frac{dU}{dr}=-\frac{\gamma}{r^2}=\mathbf{F}
+\end{equation}
+Thus, (11) becomes 
+\begin{equation}
+    \mu \ddot{r}=\frac{l^2}{\mu r^3}-\frac{\gamma}{r^2}
+\end{equation}
+\section{Determining the shape of the orbits}
+Now, I want to write $r$ as a function of $\phi$. This will help me determine the shape of the orbits which the system might take. For this, I need to solve (16). \\
+I will make a change of variable, 
+\[
+r = \frac{1}{u}
+\]
+And then, I will make a few changes in the $d/dt$ operator with the help of chain rule. 
+\[
+\frac{d}{dt} = \dot{\phi}\frac{d}{d\phi} = \frac{l}{\mu r^2}\frac{d}{d\phi}=\frac{lu^2}{\mu}\frac{d}{d\phi}
+\]
+Now, 
+\begin{equation}
+    \dot{r} = \frac{lu^2}{\mu}\frac{d}{d\phi}\left(\frac{1}{u}\right)=-\frac{l}{\mu}\frac{du}{d\phi}
+\end{equation}
+I think you can see now why I made the u-substitution. The $u^2$ term died in (16).\\
+Finally,
+\begin{equation}
+    \ddot{r}=\frac{lu^2}{\mu}\frac{d}{d\phi}\left(-\frac{l}{\mu}\frac{du}{d\phi}\right)=-\frac{l^2u^2}{\mu^2}\frac{d^2u}{d\phi^2}
+\end{equation}
+Putting these transformed values into the original equation,
+\begin{equation}
+    \frac{d^2 u}{d\phi^2}=-u+\frac{\gamma \mu}{l^2}
+\end{equation}
+This is a standard second order differential equation, which is simple to solve.
+\begin{equation}
+    u = A \cos(\phi+\delta)+\frac{\gamma \mu}{l^2}\implies r = \frac{c}{1+\epsilon \cos(\phi+\delta)}
+\end{equation}
+Where 
+\[c = \frac{l^2}{\gamma \mu}\]
+\[A = \epsilon c\]
+And we accomplished what we wanted. We wrote $r$ in terms of $\phi$. If you write (20) in the cartesian coordinates, you will get an equation of a 
+general conic section, i.e,
+\begin{equation}
+    ax^2+by^2+hxy+gx+fy+k=0 \notag
+\end{equation}
+And if you play around enough, you will find out that $\epsilon$ is the \textit{eccentricity} of the conic. 
+If its value is zero, the orbit will be circular. If its value is less than 1, the path taken by the particle will be elliptic. If it is greater than 1, the path will be hyperbolic. If it is exactly one, the path will be parabolic. \\
+In the first two cases, the orbit is said to be \textit{bounded}, while in the other two cases, the orbit is said to be \textit{unbounded}, for obvious reasons.
+
+\section{Elliptic orbits}
+In this section, we will consider the case where $0<\epsilon<1$. \\
+In that case, the orbit will be elliptic. Working out (20) in cartesian coordinates and comparing the coefficients with the standard equation of an ellipse, one will get 
+\begin{equation}
+    \frac{(x+d)^2}{a^2}+\frac{y^2}{b^2}=1
+\end{equation}
+Where 
+\begin{equation}
+    a = \frac{c}{1-\epsilon^2};\hspace{2cm}b=\frac{c}{\sqrt{1-\epsilon^2}};\hspace{2cm}d=a\epsilon
+\end{equation}
+
+\section{Energy and eccentricity}
+We can write the effective energy of an orbit in terms of its eccentricity.
+\begin{equation}
+    E = (U_{eff})_{r_{min.}}=\frac{l^2}{2\mu r_{min.}^2}-\frac{\gamma}{r_{min.}} = \frac{\gamma^2 \mu}{2l^2}(\epsilon^2-1)
+\end{equation}
+For a bounded orbit, the total energy must be negative. 
+\section{Time period of a bounded orbit}
+From Kepler's second law,
+\[\frac{dA}{dt}=\frac{\frac{1}{2}|\mathbf{r}\times \mathbf{\dot{\mathbf{r}}dt}|}{dt} = \frac{l}{2\mu}\]
+The area of the bounded orbit is simply $\pi ab$. 
+\begin{equation}
+    \tau^2 = \frac{4\pi^2\mu}{\gamma}a^3
+\end{equation}
+And we just proved \textit{Kepler's third law}.
+\end{document}
