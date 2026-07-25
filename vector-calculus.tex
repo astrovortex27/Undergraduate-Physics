@@ -1,0 +1,461 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{xcolor}
+\pagecolor{black}
+\color{white}
+\geometry{margin=1in}
+
+\title{Vector Analysis}
+\author{Noah Miller}
+\date{March 30, 2026}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+A vector is an arrow pointing in a specific direction with a magnitude. Vague definition, but it will get you through the most of Physics. \\
+I will use the boldface notation for vectors(cuz I think it's cooler).
+\begin{equation}
+    \mathbf{A}=A_x \hat{x} + A_y \hat{y}
+\end{equation}
+I will represent the magnitude of $\mathbf{A}$ with $|\mathbf{A}|$, where
+\begin{equation}
+    |\mathbf{A}|^2=A_x^2+A_y^2
+\end{equation}
+Or, if I feel lazy(which by the way I always do), I will just represent the magnitude by A. 
+\\ I will represent a unit vector by $\hat{\mathbf{A}}$, where--
+\begin{equation}
+    \hat{\mathbf{A}}=\frac{\mathbf{A}}{A}
+\end{equation}
+I will represent the unit vectors along the cartesian coordinate axes by $\hat{x},\hat{y}$ and $\hat{z}$ along x,y and z axes respectively.
+
+\section{Vector Operations}
+To add vectors, just add their components together.
+\begin{equation}
+    \mathbf{A}+\mathbf{B}=(A_x+B_x)\hat{x}+(A_y+B_y)\hat{y}
+\end{equation}
+To multiply a vector by a scalar, multiply each of the vector's component with the scalar.
+\begin{equation}
+    a\mathbf{A}=aA_x\hat{x}+aA_y\hat{y}
+\end{equation}
+Geometrically, multiplying a vector with a scalar stretches it to a length of the scalar times the previous magnitude of the vector, with no change in the direction.
+If the vector is multiplied by -1, it rotates the vector by 180 degrees.\\
+To multiply two vectors, well... there are 2 ways to do so. One is the dot product. Another is the cross product.
+\\ The dot product of two vectors is defined as
+\begin{equation}
+    \mathbf{A} \cdot \mathbf{B}=AB\cos\theta
+\end{equation}
+Where $\theta$ is the angle between the vectors. Geometrically, the dot product of $\mathbf{A}$ and $\mathbf{B}$ is the product of A and the magnitude of $\mathbf{B}$'s projection over $\mathbf{A}$.
+\\ Do a bit of math, you will be able to prove that 
+\begin{equation}
+    \mathbf{A} \cdot \mathbf{B}=A_xB_x+A_yB_y
+\end{equation}
+The dot product is obviously commutative. \\
+The second type of product is the cross product. It is defined as 
+\begin{equation}
+    \mathbf{A}\times\mathbf{B}=\begin{vmatrix}
+                                \hat{x} & \hat{y} & \hat{z} \\
+                                A_x     &   A_y   &   A_z   \\
+                                B_x     &   B_y   &   B_z
+                                \end{vmatrix}
+\end{equation} 
+\begin{equation}
+    |\mathbf{A}\times\mathbf{B}|=AB\sin\theta
+\end{equation}
+Geometrically, the cross product of $\mathbf{A}$ and $\mathbf{B}$ is a vector of magnitude equal to the area of the parallelogram formed by the two vectors pointing in a direction perpendicular to the plane formed by $\mathbf{A}$ and $\mathbf{B}$.
+Of course, there can be two vectors which are perpendicular to the plane formed by the two vectors. Thus, we resort to the right hand thumb rule. I ain't writing the rule. If you forgot it, kys. 
+Cross product is not commutative. 
+
+\section{Vector products}
+Apart from dot and cross products, there are two other type of products. Namely, Scalar Triple Product and Vector Triple product. \\
+The scalar triple product is defined as $\mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})$. Geometrically, this is the volume of the parallelopiped formed by the three vectors.
+Note that:-
+\begin{equation}
+    \mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})=\mathbf{C}\cdot(\mathbf{A}\times\mathbf{B})=\mathbf{B}\cdot(\mathbf{C}\times\mathbf{A})
+\end{equation}
+i.e, alphabetical order is preserved. If the order is not alphabetical, the magnitude of the triple product will stay the same. But the sign will be opposite.
+\\ The vector triple product is defined as $\mathbf{A}\times(\mathbf{B}\times\mathbf{C})$.\\
+This can be simplified using the \textbf{BAC-CAB rule}:-
+\begin{equation}
+    \mathbf{A}\times(\mathbf{B}\times\mathbf{C})=\mathbf{B}(\mathbf{A}\cdot\mathbf{C})-\mathbf{C}(\mathbf{A}\cdot\mathbf{B})
+\end{equation}
+Proof? Trust me. It works.
+
+\section{Gradient}
+To introduce the concept, I will use an example of temperature(which is one of the infinite cases one could think of).
+Suppose I have a function T(x,y,z) with tells me the temperature of at the point (x,y,z). Now, I wanna find the change in temperature in moving from
+(x,y,z) to (x+dx,y+dy,z+dz). 
+\begin{equation}
+    dT=T(x+dx,y+dy,z+dz)-T(x,y,z)=\frac{\partial T}{\partial x}dx + \frac{\partial T}{\partial y}dy + \frac{\partial T}{\partial z}dz
+\end{equation}
+Just because I can, I will write
+\begin{align}
+    dT = \left(\frac{\partial T}{\partial x}\hat{x} + \frac{\partial T}{\partial y}\hat{y} + \frac{\partial T}{\partial z}\hat{z}\right)\cdot(dx\hspace{0.05cm}\hat{x}+dy\hspace{0.05cm}\hat{y}+dz\hspace{0.05cm}\hat{z})= \nabla T \cdot d\mathbf{r}
+\end{align}
+Where
+\begin{equation}
+    \nabla T = \frac{\partial T}{\partial x}\hat{x} + \frac{\partial T}{\partial y}\hat{y} + \frac{\partial T}{\partial z}\hat{z}
+\end{equation}
+is called the \textbf{Gradient} of T. \\
+Geometrically speaking, $\nabla T$ points in the direction where dT is maximum. The magnitude of $\nabla T$ gives the maximum rate of increase per unit distance.
+\begin{equation}
+    \mathbf{r}=x\hspace{0.05cm}\hat{x}+y\hspace{0.05cm}\hat{y}+z\hspace{0.05cm}\hat{z} \notag 
+\end{equation}
+
+\begin{equation}
+    d\mathbf{r}=dx\hspace{0.05cm}\hat{x}+dy\hspace{0.05cm}\hat{y}+dz\hspace{0.05cm}\hat{z} \notag
+\end{equation}
+Should have had defined these two way earlier but nvm. Better late than never/ \\
+One could imagine the gradient this way. Suppose you are climbing a hill. You find the steepest ascent. This is the gradient. \\
+Let's look at a case where $\nabla T = 0$. This means that the rate of change of temperature over d\textbf{r} there is zero. This could either correspond to a maximum(the top of the hill), a minimum(the bottom of the hill) or a saddle point(a pass).
+
+\section{The Del Operator}
+We can write (13) as 
+\begin{equation}
+    \nabla T = \left(\hat{x}\frac{\partial}{\partial x}+\hat{y}\frac{\partial}{\partial y}+\hat{z}\frac{\partial}{\partial z}\right)T
+\end{equation}
+As temperature T is a scalar, we could define 
+\begin{equation}
+    \nabla = \hat{x}\frac{\partial}{\partial x}+\hat{y}\frac{\partial}{\partial y}+\hat{z}\frac{\partial}{\partial z}
+\end{equation}
+This is the \textbf{Del Operator}. \\ Although it is obviously not a vector, it lowkey behaves like one.
+You could take its dot product(divergence) or cross product(curl) with another vector.
+
+\section{Divergence and Curl}
+The divergence of a vector \textbf{V} is defined as
+\begin{equation}
+    \nabla \cdot \mathbf{V} = \frac{\partial V_x}{\partial x}+\frac{\partial V_y}{\partial y}+\frac{\partial V_z}{\partial z}
+\end{equation}
+It gives us a measure of how much a vector ``spreads out" at a particular point. Note that \textbf{V} is a function. Sketching the graph of \textbf{V}
+will give us a \textbf{Vector Field}. \\
+The curl of a vector is defined as 
+\begin{equation}
+    \nabla \times \mathbf{V}=\begin{vmatrix}
+                                \hat{x} & \hat{y} & \hat{z} \\
+                                \partial/\partial x & \partial/\partial y & \partial/\partial z \\
+                                 V_x & V_y & V_z
+                              \end{vmatrix}
+\end{equation}
+The curl of a vector function gives us a measure of how much a vector field ``swirls" around a particular point in space.
+
+\section{Product rules}
+There is nothing to explain here. Just a bunch of properties and formulae you gotta memorize. Good luck.
+\begin{align}
+    \nabla(fg)=f\nabla g + g \nabla f \hspace{4.5cm} \\
+    \nabla (\mathbf{A} \cdot \mathbf{B})=\mathbf{A}\times(\nabla \times \mathbf{B})+\mathbf{B}\times(\nabla\times\mathbf{A})+(\mathbf{A}\cdot \nabla)\mathbf{B}+(\mathbf{B}\cdot\nabla)\mathbf{A} \\
+    \nabla\cdot(f\mathbf{A})=f(\nabla\cdot\mathbf{A})+\mathbf{A}\cdot(\nabla f)\hspace{2.5cm} \\
+    \nabla\cdot(\mathbf{A}\times\mathbf{B})=\mathbf{B}\cdot(\nabla \times \mathbf{A})-\mathbf{A}\cdot(\nabla \times \mathbf{B})\hspace{0.7cm}\\
+    \nabla \times (f\mathbf{A})=f(\nabla \times \mathbf{A})-\mathbf{A}\times(\nabla f) \hspace{1.85cm}\\
+    \nabla \times (\mathbf{A}\times\mathbf{B})=(\mathbf{B}\cdot \nabla)\mathbf{A} - (\mathbf{A}\cdot \nabla)\mathbf{B} + \mathbf{A}(\nabla\cdot\mathbf{B})-\mathbf{B}(\nabla\cdot\mathbf{A}) \hspace{0.55cm}
+\end{align}
+f and g are scalar functions. \\
+No this ain't Hieroglyphics. This is Vector Calculus. Thank you.
+\section{Index notations}
+I will define a bunch of fancy notations in this section, startinf off with the \textbf{Levi-Civita symbols}.\\
+For that, I will define three sets first. 
+
+\begin{align}
+    S_1 = {(1,2,3),(3,1,2),(2,3,1)}\notag\\
+    S_2 = {(3,2,1),(2,1,3),(1,3,2)}\notag\\
+    S_3 = \{(i,j,k): \text{i=j  or i=k or j=k}\}\notag\\
+\end{align}
+Now, 
+\[
+\epsilon_{ijk} = \left\{ 
+\begin{array}{lll}
+   1 & \text{if } (i,j,k) \in S_1 & \text{+ve} \\
+   -1   & \text{if } (i,j,k) \in S_2 & \text{-ve} \\
+   0  & \text{if } (i,j,k) \in S_3 & \text{0}
+\end{array} 
+\right.
+\]
+In terms of the Levi-Civita symbols, I can write the cross product as 
+\begin{equation}
+    (\mathbf{u}\times\mathbf{v})_i = \epsilon_{ijk}u_jv_k
+\end{equation}
+The dot product is just 
+\begin{equation}
+    \mathbf{u}\cdot{v}=u_iv_i
+\end{equation}
+You can also write the divergence and curls in the index notations. Just replace \textbf{u} with $\nabla$.
+Honestly? So far, I've only seen these notations being used for proof-writing. Probably they have some real uses(although proof-writing is indeed a real use, but.. you get my point.).
+\section{Higher derivatives}
+
+There are 5 types of higher derivatives:-\vspace{0.3cm}\\
+(i) Divergence of gradient: $\nabla \cdot (\nabla T)$ \\
+(ii) Curl of gradient: $\nabla \times (\nabla T)$ \\
+(iii) Divergence of curl: $\nabla \cdot (\nabla \times \mathbf{V})$ \\
+(iv) Curl of curl: $\nabla \times (\nabla \times \mathbf{V})$ \\
+(v) Gradient of divergence: $\nabla(\nabla\cdot \mathbf{V})$ \vspace{0.3cm}\\
+If you expand (i), you will get
+\begin{equation}
+    \nabla \cdot (\nabla T)=\frac{\partial^2T}{\partial x^2}+\frac{\partial^2T}{\partial y^2}+\frac{\partial^2T}{\partial z^2}=\nabla^2 T
+\end{equation}
+(24) is called the \textbf{Laplacian of T}. \\
+(ii) is always zero. \\
+(iii) is alwayz zero. \\
+(iv) can be expanded as 
+\begin{equation}
+    \nabla \times (\nabla \times \mathbf{V})=\nabla(\nabla \cdot \mathbf{V})-\nabla^2 \mathbf{V}
+\end{equation}
+
+\section{Line Integral}
+A line integral is defined as 
+\begin{equation}
+    I_l = \int_{a}^{b} \mathbf{V}\cdot d\mathbf{l}
+\end{equation}
+Where \textbf{V} is a vector function, and d\textbf{l} is an infinitesimal displacement vector along the path along which the line integral is evaluated. \\
+If the path is closed, i.e, a=b, then $I_l$ will be called a \textbf{closed integral}, which is represented by 
+\begin{equation}
+    I_l = \oint \mathbf{V}\cdot d\mathbf{l}
+\end{equation}
+The value of a line integral depends on the path taken, but there is a specific class of vectors for which the line integral doesn't depend on the path.
+
+\section{Surface Integral}
+A surface integral over a surface S is defined as
+\begin{equation}
+    I_s = \int_S \mathbf{V}\cdot d\mathbf{a}
+\end{equation}
+Where \textbf{V} is again a vector function, and d\textbf{a} is a small patch of area on the surface about which the surface integral is to be calculated. If the surface is closed, we call $I_s$ a \textbf{closed surface integral}, which 
+is again represented as 
+\begin{equation}
+    I_s = \oint \mathbf{V}\cdot d\mathbf{a}
+\end{equation}
+
+\section{Volume Integral}
+A volume integral is defined as 
+\begin{equation}
+    I_v=\int_{V}T\hspace{0.01cm}d\tau 
+\end{equation}
+Where T is a scalar function and $d\tau$ is an infinitesimal volume element. In cartesian coordinates,
+\begin{equation}
+    d\tau=dx\hspace{0.03cm}dy\hspace{0.03cm}dz
+\end{equation}
+\section{The Fundamental Theorems of Vector Calculus}
+Hopefully you didn't skip high school. So you must know that for a scalar function f,
+\begin{equation}
+    \int_{a}^{b}\left(\frac{df}{dx}\right)dx=f(b)-f(a)
+\end{equation}
+In vector calculus, there are three different types of `derivatives'-- gradient, divergence and curl.
+Each one has its own fundamental theorem. \\
+The \textbf{Fundamental Theorem for Gradients} goes on to say that for a scalar function T(x,y,z) -- 
+\begin{equation}
+    \int_{a}^{b}\nabla T\cdot d\mathbf{l}=T(b)-T(a)
+\end{equation}
+Two interesting points to note:--\\
+(i)The line integral in (34) does not depend on the path. Turns out that gradients have this interesting property of making their scalar functions path-independent. \\
+(ii)$\oint\nabla T\cdot d\mathbf{l}=0$, for obvious reasons.
+\\ 
+\\
+The \textbf{Fundamental Theorem for divergence} goes on to say that--
+\begin{equation}
+    \int_{V}(\nabla\cdot\mathbf{V})d\tau = \oint_{S}\mathbf{V}\cdot d\mathbf{a}
+\end{equation}
+For reasons I don't know, (35) has three special names: \textbf{Gauss' Theorem, Green's Theorem} or simply the \textbf{Divergence Theorem}.\\
+Geometrically one could think like this: if \textbf{V} represents the flow of an incompressible fluid, the flux of \textbf{V}(the RHS of Eq.35) is the same as the volume flow rate of the fluid through the volume.\\
+\\
+\textbf{The Fundamental Theorem of Curls} states that --
+\begin{equation}
+    \int_{S}(\nabla \times \mathbf{V})\cdot d\mathbf{a}=\oint_{P}\mathbf{V}\cdot d\mathbf{l}
+\end{equation}
+This is also called the \textbf{Stokes' Theorem}. \\
+Geometrical intepretation: the curl of a vector field measures the ``swirl'' of the vectors around a point. To get a collective measure of swirl, one could find the flux of the curl along a surface \textit{S}.
+Now, imagine a pond, in which the water is rotating in a whirlpool. If you look at the edges of the whirlpool, you can see that water is flowing out of/into the edges of the whirlpool.
+The more the whirlpool swirls, the more more water flows out off/into the edges. \\
+The \textit{P} here is the perimeter of the surface \textit{S}. \\The RHS of (36) is thus called the ``circulation'' of \textbf{V}. \\
+Two interesting points to note:--\\
+(i) $\int_{S}(\nabla \times \mathbf{V})\cdot d\mathbf{a}$ depends only on the boundary line, and not the area of the surface as such. \\
+(ii)$\oint_{S}(\nabla \times \mathbf{V})\cdot d\mathbf{a} = 0$, as the boundary line will shrink to a point for a closed surface, just like a balloon. \\
+
+\section{Integration by Parts}
+Let's first look at how we integrated by parts for scalar functions. 
+\begin{equation}
+    \frac{d}{dx}(fg)=f\left(\frac{dg}{dx}\right)+g\left(\frac{df}{dx}\right)
+\end{equation}
+Integrating LHS and RHS from a to b --
+\begin{align}
+\int_{a}^{b}\frac{d}{dx}(fg)dx = \int_{a}^{b}f\left(\frac{dg}{dx}\right)dx + \int_{a}^{b}g\left(\frac{df}{dx}\right)dx\notag \\
+\implies \int_{a}^{b}f\left(\frac{dg}{dx}\right)dx = \left. (fg)\right|_{a}^{b}-\int_{a}^{b}g\left(\frac{df}{dx}\right)dx
+\end{align}
+We proceed in a similar fashion while integrating vector function by parts. The product rule for gradients is-- 
+\begin{equation}
+    \nabla\cdot(f\mathbf{A}) = f(\nabla\cdot\mathbf{A})+A\cdot(\nabla f) \notag
+\end{equation}
+Integrating the LHS and RHS over an infinitesimal volume $d\tau$ and invoking Green's theorem(I like this name),
+\begin{align}
+    \int \nabla\cdot(f\mathbf{A}) d\tau = \int f(\nabla\cdot\mathbf{A})d\tau+\int A\cdot(\nabla f)d\tau = \oint \nabla f\mathbf{A}\cdot d\mathbf{a} \notag \\
+    \implies \int_{V} f(\nabla\cdot\mathbf{A})d\tau = \oint_{S} f\mathbf{A}\cdot d\mathbf{a}-\int_{V} A\cdot(\nabla f)d\tau \hspace{2.8cm}
+\end{align}
+
+\section{Spherical Coordinates}
+As the name suggests, we write the coordintes with reference to a sphere. As in, we imagine the particle moving along the radii of one or more concentric
+spheres. \\
+In cartesian coordinates, we have three perpendicular coordinate axes for reference. To specify the position of the particle, we write the displacement of the particle along these axes.
+For example, if I say that the coordinates of a particle are (2,3,7) in the cartesian system, it means that the particle is 2 units away from the origin along the x-axis, 3 units away from the 
+origin along the y-axis and 7 units away from the origin along the z-axis. \\
+In Spherical Coordinates, we specify the position of the particle by writing its distance from the origin(r), the angle the position vector of the particle makes with the z-axis, or simply the \textbf{Plane angle}($\theta$), and the
+angle made by the position vector's projection with the x-axis, or simply the \textbf{Azimuthal Angle}($\phi$). \\
+The unique position of the particle in the three dimensional space is denoted by (r,$\theta$,$\phi$). \\
+We define three unit vectors:-\\
+(i)$\hat{r}$ along \textbf{r}. \\
+(ii)$\hat{\theta}$ perpendicular to $\hat{r}$, in the direction where $\theta$ is increasing. \\ 
+(iii)$\hat{\phi}$ perpendicular to both $\hat{r}$ and $\hat{\theta}$, in the direction where $\phi$ is increasing. \\ \\
+Thus, one can write a vector using spherical coordinates as--
+\begin{equation}
+    \mathbf{A}=A_r\hat{r}+A_{\theta}\hat{\theta}+A_{\phi}\hat{\phi}
+\end{equation}
+The transformation equations are--
+\begin{align}
+    z = r\cos\theta \hspace{0.9cm}\\
+    x = r\sin\theta\cos\phi \\
+    y = r\sin\theta\sin\phi \\ \notag
+\end{align}
+For unit vectors--
+\begin{align}
+    \hat{r} =\sin\theta\cos\phi\hspace{0.1cm}\hat{x}+\sin\theta\sin\phi\hspace{0.1cm}\hat{y}+\cos\theta\hspace{0.1cm}\hat{z} \\
+    \hat{\theta} =\cos\theta\cos\phi\hspace{0.1cm}\hat{x}+\cos\theta\sin\phi\hspace{0.1cm}\hat{y}-\sin\theta\hspace{0.1cm}\hat{z} \\
+    \hat{\phi} = -\sin\phi\hspace{0.1cm}\hat{x}+\cos\phi\hspace{0.1cm}\hat{y}\hspace{3cm} \\ \notag
+\end{align}
+While writing the displacement vector $d\mathbf{l}$ in spherical coordinates--
+\begin{align}
+    d\mathbf{l}= dl_{r}\hat{r}+dl_{\theta}\hat{\theta}+dl_{\phi}\hat{\phi} = dr\hspace{0.03cm}\hat{r}+ r\hspace{0.03cm}d\theta\hspace{0.1cm}\hat{\theta}+r\sin\theta d\phi \hspace{0.1cm}\hat{\phi}
+\end{align} 
+To write $d\tau$ in spherical coordinates:- 
+\begin{align}
+    d\tau=r^2 \sin\theta dr\hspace{0.05cm}d\theta\hspace{0.05cm}d\phi
+\end{align}
+I will write the expressions for gradient, divergence, curl and laplacian in spherical coordinates. See Appendix A of Griffiths' \textit{Introduction to Electrodynamics} for the proof.
+\begin{align}
+    \nabla T = \frac{\partial T}{\partial r}\hat{r}+\frac{1}{r}\frac{\partial T}{\partial \theta}\hat{\theta}+\frac{1}{r\sin\theta}\frac{\partial T}{\partial \phi}\hat{\phi} \hspace{10cm} \\
+    \nabla \cdot \mathbf{v} = \frac{1}{r^2}\frac{\partial}{\partial r}(r^2v_r)+\frac{1}{r\sin\theta}\frac{\partial}{\partial \theta}(v_{\theta}\sin\theta)+\frac{1}{r\sin\theta}\frac{\partial v_{\phi}}{\partial\phi}\hspace{6.6cm} \\
+    \nabla \times \mathbf{v} = \frac{1}{r\sin\theta}\left[\frac{\partial}{\partial \theta}(v_{\phi}\sin\theta)-\frac{\partial v_{\theta}}{\partial \phi}\right]\hat{r}+\frac{1}{r}\left[\frac{1}{\sin\theta}\frac{\partial v_r}{\partial \phi}-\frac{\partial}{\partial r}(rv_{\phi})\right]\hat{\theta} + \frac{1}{r}\left[\frac{\partial}{\partial r}(rv_{\theta})-\frac{\partial v_r}{\partial\theta}\right]\hat{\phi} \\
+    \nabla^2T=\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2 \frac{\partial T}{\partial r}\right)+\frac{1}{r^2 \sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta \frac{\partial T}{\partial \theta}\right)+\frac{1}{r^2\sin^2\theta}\frac{\partial^2T}{\partial\phi^2} \hspace{5cm}
+\end{align}
+Fucking Christ I had to fry 3 gazillion braincells just to type this shit out...
+
+\section{Cylindrical Coordinates}
+Here, instead of a sphere or rectancle, we take a cylinder as a reference. We specify the position of a particle using 3 parameters --\\
+(i) Distance from the axis of the cylinder(s)\\
+(ii) Azimuthal angle($\phi$)\\
+(iii) Displacement along the height of the cylinder(z) \\
+\\
+Their relation to cartesian coordinates is --
+\begin{align}
+    x = s\cos\phi \\
+    y = s\sin\phi \\
+    z = z \hspace{0.9cm}
+\end{align}
+Thus, 
+\begin{equation}
+    d\mathbf{l}=ds\hspace{0.1cm}\hat{s}+s\hspace{0.1cm}d\phi\hspace{0.1cm}\hat{\phi}+dz\hspace{0.1cm}\hat{z}
+\end{equation}
+The volume element will be --
+\begin{equation}
+    d\tau = s\hspace{0.1cm}ds\hspace{0.05cm}d\phi\hspace{0.05cm}dz
+\end{equation}
+The expressions of gradient, divergence and curl in cylindrical coordinates are(LaTeX torture again..) ---
+\begin{align}
+    \nabla T = \frac{\partial T}{\partial s}\hat{s}+\frac{1}{s}\frac{\partial T}{\partial \phi}\hat{\phi}+\frac{\partial T}{\partial z}\hat{z}\hspace{7cm}\\
+    \nabla\cdot\mathbf{v} = \frac{1}{s}\frac{\partial}{\partial s}(sv_{s})+\frac{1}{s}\frac{\partial v_{\phi}}{\partial \phi}+\frac{\partial v_z}{\partial z}\hspace{6.2cm}\\
+    \nabla\times\mathbf{v} = \left(\frac{1}{s}\frac{\partial v_z}{\partial \phi}-\frac{\partial v_{\phi}}{\partial z}\right)\hat{s}+\left(\frac{\partial v_s}{\partial z}-\frac{\partial v_z}{\partial s}\right)\hat{\phi}+\frac{1}{s}\left[\frac{\partial}{\partial s}(sv_{\phi})-\frac{\partial v_s}{\partial \phi}\right]\hat{z}\\
+    \nabla^{2}T = \frac{1}{s}\frac{\partial}{\partial s}\left(s\frac{\partial T}{\partial s}\right)+\frac{1}{s^2}\frac{\partial^2 T}{\partial \phi^2}+\frac{\partial^2 T}{\partial z^2}\hspace{5.3cm}
+\end{align}
+
+\section{One Dimensional Dirac Delta Function}
+Before studying the Dirac Delta function, let's look at the function---
+\begin{equation}
+    \mathbf{v}=\frac{1}{r^2}\hat{r}
+\end{equation}
+We can compute its divergence using (49).
+\begin{equation}
+    \nabla\cdot\mathbf{v}=\frac{1}{r^2}\frac{\partial}{\partial r}(1)=0
+\end{equation}
+Now, let's find the flux of $\mathbf{v}$ over a sphere of radius R.
+
+\begin{equation}
+    \oint \mathbf{v}\cdot d\mathbf{a}=\int_{0}^{2\pi}\int_{0}^{\pi} \left(\frac{1}{R^2}\hat{r}\right)\cdot R^2 \sin\theta d \theta d\phi\hspace{0.1cm}\hat{r} = 4\pi
+\end{equation}
+But, if we compute (64) using the Divergence theorem,
+\begin{equation}
+    \oint \mathbf{v}\cdot d\mathbf{a} = \int_{V}(\nabla\cdot\mathbf{v})d\tau=0
+\end{equation}
+Of course (64) and (65) can't be true simultaneously. So, which is correct? And more importantly, is the divergence theorem wrong?\\
+Turns out that all discrepancies lie within the point r=0. The function blows up at r=0. In computing the integral, we are essentially dividing by zero at the point r=0. \\
+The divergence is indeed zero, \textit{except} for the point where r=0. The Dirac Delta function will help us overcome this discrepancy.\\\\
+The Dirac Delta function is defined as:--
+\begin{equation}
+    \delta(x)=\begin{cases}
+        0 & \text{if }x\ne 0 \\
+        \infty & \text{if }x=0
+    \end{cases}
+\end{equation}
+and
+\begin{equation}
+    \int_{-\infty}^{\infty}\delta(x)dx=1
+\end{equation}
+Now suppose we have a smooth and continuous function(for safety reasons) $f(x)$. I take its product with the dirac delta function.\\
+$f(x)\delta(x)$ is zero everywhere \textit{except} at x=0.\\
+Thus, we can write --
+\begin{equation}
+    f(x)\delta(x)=f(0)\delta(x)
+\end{equation}
+Now, I will integrate this product from $-\infty$ to $+\infty$:--
+\begin{equation}
+    \int_{-\infty}^{\infty}f(x)\delta(x)dx=f(0)\int_{-\infty}^{\infty}\delta(x)dx=f(0)
+\end{equation}
+If you've studied analytical geometry in High school(which I suppose you have), you know that we can shift the origin fron (0,0) to (a,0). In that case, all the x's will be replaced by (x-a)'s. 
+\begin{equation}
+    f(x-a)\delta(x-a)=f(a)\delta(x-a)
+\end{equation}
+\begin{equation}
+    \int_{-\infty}^{\infty}f(x-a)\delta(x-a)dx=f(a)\int_{-\infty}^{\infty}\delta(x-a)dx=f(a)
+\end{equation}
+Note that the integral was not affected `cause I just shifted the plot rightwards by `a' units. Thus, the area under the curve stays the same. \\
+Another interesting property of the dirac delta function is:--
+\begin{equation}
+    \delta(kx)=\frac{1}{|k|}\delta(x)
+\end{equation}
+To prove this, I will drag $\delta(kx)$ into an integral:--
+\begin{equation}
+    \int_{-\infty}^{\infty}f(x)\delta(kx)dx
+\end{equation}
+Now, I will make a change in variable.
+\begin{align}
+    y=kx
+\end{align}
+Here's the catch. If k is positive, chef's kiss. But if not, the $-\infty$ and $\infty$ in (73) will reverse orders. To account for this flipping of the infinites, a minus has to be included.
+Thus, (73) can be re-written as:--
+\begin{equation}
+    \pm\frac{1}{k}\int_{-\infty}^{\infty}f\left(\frac{y}{k}\right)\delta(y)dy=\frac{f(0)}{|k|}
+\end{equation}
+Comparing this with (69), we can say that (72) is true.
+
+\section{Three Dimensional Dirac Delta Function}
+The delta function can be generalized to three dimensions as--
+\begin{equation}
+    \delta^3(\mathbf{r}) =\delta(x)\delta(y)\delta(z)
+\end{equation}
+$\delta^3(\mathbf{r})$ is zero everywhere, save for the point (0,0,0).\\
+The volume integral of the delta function over the 3 dimensional space is 1.
+\begin{equation}
+    \int_{V}\delta(x)\delta(y)\delta(z)d\tau=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\delta(x)\delta(y)\delta(z)dx\hspace{0.1cm}dy\hspace{0.1cm}dz=1
+\end{equation} 
+Also,
+\begin{equation}
+    \int_{-\infty}^{\infty}f(\mathbf{a})\delta^3(\mathbf{r}-\mathbf{a})d\tau=f(\mathbf{a})
+\end{equation}
+We are now in a position to resolve the discrepancy which I told you of at the beginning of section 16. 
+As we saw, $\nabla\cdot\mathbf{v}$ was zero everywhere, but blew up at (0,0,0). And its integral over $d\tau$ was $4\pi$. Keeping all these conditions in mind, we can say--
+\begin{equation}
+    \nabla\cdot\mathbf{\frac{1}{r^2}\hat{r}}=4\pi\delta^3(\mathbf{r})
+\end{equation}
+
+\section{Helmholtz Theorem and Vector Fields}
+The Helmholtz theorem states that if the divergence and curl of a vector function \textbf{F} go to zero faster than $1/r^2$ as $r\rightarrow \infty$, and \textbf{F}(\textbf{r}) goes to zero as $\mathbf{r}\rightarrow \infty$, then \textbf{F} is uniquely given by:--
+\begin{equation}
+    \mathbf{F}=-\nabla U + \nabla\times\mathbf{W}
+\end{equation}
+See \textit{Appendix B} of Griffiths' \textit{Introduction to Electrodynamics} for the proof.
+\end{document}
