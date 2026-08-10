@@ -1,0 +1,189 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{xcolor}
+\pagecolor{black}
+\color{white}
+\geometry{margin=1in}
+
+\title{Maxwell's equations and Light}
+\author{Noah Miller}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+In this article, my objects of interest are Maxwell's equations and their connection to optics.
+I will start by laying out the equations, explaining briefly what each term and the equation means, and 
+explain how they connect to optics. \\
+Throughout this article, I shall use $\mathbf{E}$ to represent electric fields, $\mathbf{B}$ to represent 
+magnetic fields, $\rho$ to represent the volume charge density, $\epsilon_0$ to represent the electric constant 
+and $\mu_0$ to represent the magnetic permeability of free space. Moreover, I shall represent a line element with $d\mathbf{l},$ area element with $d\mathbf{a}$ and 
+volume element with $d\tau$. Finally, I shall represent current density by $\mathbf{J}$.
+
+\section{Maxwell's equations}
+The entirety of classical electrodynamics more or less revolves around four equations. Those being--
+
+\begin{align}
+    \nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0} \hspace{2cm}\\
+    \nabla \cdot \mathbf{B} = 0 \hspace{2.2cm}\\
+    \nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\hspace{1.5cm} \\
+    \nabla \times \mathbf{B} = \mu_0\left(\mathbf{J}+\epsilon_0\frac{\partial \mathbf{E}}{\partial t}\right)
+\end{align}
+Together, these four equations are called \textit{Maxwell's equations}.\\
+The first one among these is \textbf{Gauss' law for electric fields}. To see what the equation represents, 
+take the volume integral over both sides of the equation and invoke the divergence theorem. 
+
+\[\int_V (\nabla \cdot \mathbf{E})d\tau = \int_V\frac{\rho}{\epsilon_0}d\tau\]
+\[\implies\oint_S \mathbf{E}\cdot d\mathbf{a} = \frac{Q_{enc.}}{\epsilon_0} \hspace{0.9cm}\]
+
+To describe what I did here--- I took the integral of both sides of the equations over a volume $V$ with a boundary $S = \partial V$. Using 
+the divergence theorem, I converted the volume integral over the left hand side to a surface integral.\\
+The calculation on the right hand side is pretty straightforward-- $\epsilon_0$ is a constant, so it comes out of the integral. The volume integral 
+of the charge density over an enclosed volume will result in the charge enclosed within the volume, $Q_{enc.}$. 
+All in all, the first equation basically says that the flux of the electric field is equal to the charge enclosed in the concerned volume divided by $\epsilon_0$. \\ The second equation is pretty much what it reads--- magnetic fields are divergence-free. If I repeat the same calculations as I did for the previous equation(which I won't, because I'm lazy.), 
+you will find that---
+
+\[\oint_S \mathbf{B}\cdot d\mathbf{a}=0\]
+
+The flux of a magnetic field over a closed surface is always zero. If some amount of flux is entering through a closed surface, an equal amount of flux must leave from the surface. 
+You can't have a source or sink for magnetic field lines, for if you enclose a surface around the source or sink, some flux must leave or enter the surface respectively. 
+What this means is that \textit{magnetic monopoles don't exist}. Honestly, it's just an arrogant way of saying that magnetic monopoles have never been observed so far. Oh, by the way, the second equation is called \textbf{Gauss' law of magnetism.} Should've said it earlier but never mind.\\
+
+The third equation represents \textbf{Faraday's law of electromagnetic induction}. To see what it actually is, take the surface integrals over both sides of the equations over a surface $S$ with a boundary $C = \partial S$, and then invoke Stokes' theorem. 
+
+\[\int_S (\nabla \times \mathbf{E})\cdot d\mathbf{a} = -\int_S\frac{\partial \mathbf{B}}{\partial t}\cdot d\mathbf{a}\]
+\[\implies \oint_C \mathbf{E}\cdot d\mathbf{l} = -\frac{\partial}{\partial t}\int_S \mathbf{B}\cdot d\mathbf{a} \hspace{0.9cm}\]
+
+Notice that the term on the left hand side is the \textit{electromotive force} over the curve $C$. The second term is negative \textit{the rate of change of magnetic flux}. 
+Representing e.m.f with $\varepsilon$ and magnetic flux with $\Phi$, 
+
+\[\varepsilon = -\frac{\partial \Phi}{\partial t}\]
+
+If the magnetic flux changes with time, it will induce an e.m.f in the circuit. The minus sign is actually really important here. Suppose it was not there. 
+If the flux changes, e.m.f will be induced. This will induce a current. As the current flows, the magnetic flux changes further, and thus more e.m.f will be induced, and more current will be induced. 
+This process will keep repeating and the current will blow up to infinity(often referred to as a \textit{positive feedback} mechanism).\\
+Now, put the minus sign back. If the flux changes, an e.m.f is induced \textit{in such a way that when the current is induced, the flux generated by it opposes the change in the flux of the original magnetic field}.
+This resistance in the change of flux is what keeps the current from blowing up to infinity. That minus sign is what's keeping the universe from falling apart. \\
+
+The last equation is called \textbf{Ampere's law}. When it was first formulated, it did not contain the $\epsilon_0 \partial \mathbf{E}/\partial t$ term(called the displacement current). Originally, it was
+
+\[\nabla \times \mathbf{B}= \mu_0 \mathbf{J}\]
+
+Repeating the same calculations I did for the third equation, we get 
+\[\int_S (\nabla \times \mathbf{B})\cdot d\mathbf{a} = \mu_0 \int_S \mathbf{J}\cdot d\mathbf{a}\] 
+\[\implies \oint_{C}\mathbf{B}\cdot d\mathbf{l}=\mu_0 i_{in}\]
+
+Where $i_{in}$ is the current passing through the curve $C$.
+If you have a bunch of current distributions and you calculate the line integral of the magnetic field produced by this current distributions 
+along a closed curve which encloses all the currents, it will evaluate to $\mu_0 i_{in}$. The current distributions outside 
+the closed curve will have no contribution to the line integral. \\
+To see why displacement current was introduced, take the divergence on both sides of the original equation. 
+
+\[\nabla \cdot(\nabla \times \mathbf{B})=\mu_0(\nabla\cdot \mathbf{J})=-\mu_0\frac{\partial \rho}{\partial t}\]
+
+Where the second equality follows from the equation of continuity.\\
+From vector calculus, we know that the divergence of a curl is always zero. Thus, 
+
+\[\frac{\partial \rho}{\partial t}=\nabla\cdot\mathbf{J}=0\]
+
+So Ampere's law in its original form says that currents must be divergence-free. But this is not always true. 
+While currents can indeed be divergence-free(the current flowing through household wires, for example.), but there are cases 
+where they are not. The simplest example is that of a moving charge. Suppose I have a charged particle with charge $q$ moving with some 
+velocity $\mathbf{V}$, and there are no other charges in its vicinity. I will denote its position by $\mathbf{r}$ at some time $t$. 
+At a time $t+\delta t$, the charged particle's position will be $\mathbf{r}+\delta\mathbf{r}$, where $\delta\mathbf{r}=\mathbf{v}\delta t$. \\
+See something? At one instant, the charge was at $\mathbf{r}$. At another instant, the charge disappeared from $\mathbf{r}$. And no compensating charge flowed back to $\mathbf{r}$ 
+to compensate for $q's$ absence. For a current to be divergence free, the net rate of charge flow must be zero. If some charge is flowing in or out, an equal amount of charge must flow outwards or inwards respectively. We see 
+that this is definitely not the case here. Ampere's law in its original form only holds for divergence-free currents. \\
+To account for the inconsistency, we must add a correction term. Let that correction term be $\mathbf{\eta}$. Let's repeat the calculations again. 
+
+\[\nabla \cdot(\nabla \times \mathbf{B})=\mu_0[\nabla\cdot (\mathbf{J}+\mathbf{\eta})]=-\mu_0\frac{\partial \rho}{\partial t}+\mu_0 (\nabla\cdot\mathbf{\eta})=0\]
+From (1), we can write $\rho$ in terms of $\mathbf{E}$.
+\[\rho = \epsilon_0(\nabla\cdot\mathbf{E})\]
+Putting it back in the previous expression and cancelling the $\mu_0$'s,
+\[\nabla\cdot\mathbf{\eta}=\epsilon_0 \frac{\partial}{\partial t}(\nabla\cdot{\mathbf{E}})\]
+We can put the $\partial/\partial t$ inside the $nabla\cdot$ because their order of operation does not matter here. 
+\[\nabla\cdot\mathbf{\eta}=\nabla\cdot\left(\epsilon_0\frac{\partial\mathbf{E}}{\partial t}\right)\]
+\[\implies \mathbf{\eta} = \epsilon_0\frac{\partial \mathbf{E}}{\partial t}\]
+This is called \textit{the displacement current}. It was named as such because Maxwell speculated the term to arise as a 
+result of displacement of $aether$, a theoretical medium proposed to explain the propagation of electromagnetic waves in the absence of any apparent medium, because it was thought that a medium is necessary for the propagation of waves. Subsequent advancements of physics 
+proved that electromagnetic waves indeed require no medium to propagate, and thus the idea of the existence of aether was discarded as unnecessary baggage. 
+But the term persisted because it had been popularized by then(and honestly, it kinda sounds cool.).\\ 
+Now that we have discussed what each of the 4 equations represent, we are now at the right position to study their connection to light and electromagnetic waves in general.  
+
+\section{Solving Maxwell's equations for no external charges or currents}
+We shall set $\rho$ and $\mathbf{J}$ to zero and analyze the solutions to Maxwell's equations for such cases. \\
+The 4 equations in a charge and current free environment will take the form:- 
+\begin{align}
+\nabla\cdot\mathbf{E}=0\hspace{1cm}\\
+\nabla\cdot\mathbf{B}=0\hspace{1cm}\\
+\nabla\times\mathbf{E}=-\frac{\partial \mathbf{B}}{\partial t}\hspace{0.6cm}\\
+\nabla\times\mathbf{B}=-\mu_0\epsilon_0\frac{\partial \mathbf{E}}{\partial t}
+\end{align}
+
+
+Before solving the equations, let's think of them qualitatively. If the electric field changes, it will influence the magnetic field. 
+If the magnetic field changes, it will influence the electric field. Thus, change in one field will induce a change in the other, and thus both of the fields will 
+keep reinforcing each other. \\
+Let's solve them quantitaively now. Take curl on both sides of (7) (you will see why in a bit).
+
+\[\nabla\times(\nabla\times\mathbf{E})=-\nabla\times\left(\frac{\partial \mathbf{B}}{\partial t}\right)\]
+Using the standard identity, 
+\[\nabla\times(\nabla\times\mathbf{E}) = \nabla(\nabla\cdot\mathbf{E})-\nabla^2\mathbf{E}\]
+and swapping the curl and $\partial/\partial t$,
+\[\nabla(\nabla\cdot\mathbf{E})-\nabla^2\mathbf{E}=-\frac{\partial}{\partial t}(\nabla\times\mathbf{B})\]
+Using (5) and (8) to get rid of $\nabla\cdot\mathbf{E}$ and $\nabla\times\mathbf{B}$,\\
+
+\begin{equation}\mu_0\epsilon_0\frac{\partial^2\mathbf{E}}{\partial^2 t}=\nabla^2\mathbf{E}\end{equation}
+
+This equation represents a 3-dimensional wave. Comparing this to the standard wave equation, 
+
+\[\frac{1}{v^2}\frac{\partial^2 y}{\partial t^2}=\frac{\partial^2 y}{\partial x^2}\]
+
+where $v$ is the speed of the wave pulse. \\
+Thus, the speed of our \textit{electric wave} will be 
+
+\[v=\frac{1}{\sqrt{\mu_0\epsilon_0}}=c\]
+
+We will concern ourselves with a special class of solutions which describe planar waves that propagate along the x-axis and don't depend on y and z.
+Reason? They are simpler to deal with.\\
+The condition that $\nabla\cdot\mathbf{E}=0$ implies that the wave must have a constant x component. 
+Any constant electric field can be added as a solution to Maxwell's equations. We will choose the constant in such a way that $E_x$ vanishes.
+We loof for electric fields of the form--- 
+\[\mathbf{E}=(0,E(x,t),0)\]
+
+The most general solution will be of the form 
+
+\[E(x,t) = f(x-ct)+g(x+ct)\]
+
+For the sake of this discussion, I will choose a sinusoidal wave. 
+
+\[E(x,t) = E_0\sin(kx-\omega t)\]
+
+where $\omega = ck$. \\ \\
+Let's turn our attention to $\mathbf{B}$. The procedure will pretty much stay the same. Take
+the curl on both sides of (8):
+
+\[\nabla\times(\nabla\times\mathbf{B})=-\mu_0\epsilon_0\frac{\partial}{\partial t}(\nabla\times \mathbf{E})\]
+
+Repeating the same steps,
+
+\[\nabla^2\mathbf{B}=\frac{1}{c^2}\frac{\partial^2 \mathbf{B}}{\partial t^2}\]
+
+In addition, we have (7). If you write the curls and derivatives separately, it's not hard to see that 
+the partial derivative of $\mathbf{B}$ with respect to time only has a z component. As $\mathbf{B}$ is a function of $x$
+and $t$,
+
+\[\mathbf{B} = (0,0,B(x,t))\]
+
+Putting this in (7), 
+
+\[E_0 k \cos(kx-\omega t)=-\frac{\partial B}{\partial t}\]
+\[\implies B = \frac{E_0}{c}\sin (kx-\omega t)\]
+
+\section{Conclusion}
+In an environment with no external charges or currents, the solutions to Maxwell's equations will give rise to electromagnetic waves, as we saw above. 
+The electric and magnetic components of the waves will be perpendicular to the direction of propagation as well as perpendicular to each other. These waves 
+travel at speed $c$ in vacuum. 
+\end{document}
